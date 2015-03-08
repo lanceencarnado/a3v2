@@ -90,7 +90,7 @@ void UImanager::printBrig(Brig* brig)
         while (!(tempQueue->empty())) {
             cout <<"----Pirate id: "<< tempQueue->front()->getId() 
                 << "  space: " << tempQueue->front()->getSpace() << endl;
-            tempQueue->pop();
+            tempQueue->tempPop();
         }
         delete tempQueue;
     }

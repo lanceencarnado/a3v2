@@ -20,6 +20,7 @@ class Queue
         ~Queue();
         int push(Pirate*);
         int pop();
+        int tempPop();
         Pirate* front();
         bool empty();
         bool contains(int);

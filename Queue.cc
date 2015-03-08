@@ -83,6 +83,20 @@ int Queue::pop() {
         return C_NOK;
 }
 
+// A pop function that does not delete the removed Node's data
+// (required for the tempQueue that is made in the printBrig function)
+
+int Queue::tempPop() {
+	if (head == 0)
+		return C_NOK;
+	Node* newHead = head->next;
+	delete head;
+	head = newHead;
+	if (head != 0)
+		head->prev = 0;
+	return C_OK;
+}
+
 Pirate* Queue::front() {
     return head->data;
 }
