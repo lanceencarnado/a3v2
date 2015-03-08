@@ -37,6 +37,7 @@ int Brig::removePirate(int pirateId) {
         currCell = cells.get(i);
         // goes through each Queue and asks if it contains the Pirate to be removed
         if (currCell->getPirates().contains(pirateId)) {
+            currCell->increaseSpace(currCell->getPirates().getPirateSpace(pirateId));
             currCell->getPirates().remove(pirateId);  // remove it from the Queue
             return C_OK;
         } 

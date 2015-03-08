@@ -142,8 +142,8 @@ int Queue::remove(int pirateId) {
 
 }
 
-// Returns the size of a Pirate with the given ID
-int Queue::getPirateSize(int pirateId) {
+// Returns the space of a Pirate with the given ID
+int Queue::getPirateSpace(int pirateId) {
     Node *currNode;
     
     currNode = head;
