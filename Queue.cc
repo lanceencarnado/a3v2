@@ -42,6 +42,11 @@ Queue::~Queue() {
     }
 }
 
+/*   Function:  push                         			        */
+/*         in:  Pointer pirate to be added to the Queue         */
+/*        out:  Int indicating success or failure               */
+/*    Purpose:  Adds the pirate pointer to the end of the Queue */
+
 int Queue::push(Pirate* newPirate) {
     Node *newNode;
     Node *currNode, *prevNode;
@@ -76,6 +81,10 @@ int Queue::push(Pirate* newPirate) {
     return C_OK;
 }
 
+/*   Function:  pop                         			        */
+/*        out:  Int indicating success or failure               */
+/*    Purpose:  Removes the pirate at the front of the Queue    */
+
 int Queue::pop() {
     if (head != 0)
         return remove(head->data->getId());
@@ -83,8 +92,12 @@ int Queue::pop() {
         return C_NOK;
 }
 
-// A pop function that does not delete the removed Node's data
-// (required for the tempQueue that is made in the printBrig function)
+/*   Function:  tempPop                         			    */
+/*        out:  Int indicating success or failure               */
+/*    Purpose:  A pop function that does not delete the         */
+/*              removed node's data (this is required for the   */
+/*              temporary Queue that is made in the printBrig   */
+/*              function)                                       */
 
 int Queue::tempPop() {
 	if (head == 0)
@@ -97,9 +110,18 @@ int Queue::tempPop() {
 	return C_OK;
 }
 
+/*   Function:  front                         			        */
+/*        out:  Pointer to the Pirate at the front of the Queue */
+/*    Purpose:  Returns a pointer to the pirate at the front of */
+/*              the queue                                       */
+
 Pirate* Queue::front() {
     return head->data;
 }
+
+/*   Function:  empty                         			        */
+/*        out:  Boolean indicating empty or non-empty           */
+/*    Purpose:  Indicates whether or not the Queue is empty     */
 
 bool Queue::empty() {
     if (head == 0)
@@ -107,6 +129,11 @@ bool Queue::empty() {
     else 
         return false;   
 }
+
+/*   Function:  remove                         			        */
+/*         in:  ID of the pirate to be removed                  */
+/*    Purpose:  Removes a pirate with the given ID from the     */
+/*              Queue                                           */
 
 int Queue::remove(int pirateId) {
     Node *currNode, *prevNode;
@@ -124,12 +151,12 @@ int Queue::remove(int pirateId) {
     if (currNode == 0)
         return C_NOK;
 
-    if (prevNode == 0) {        // first position
+    if (prevNode == 0) {
         head = currNode->next;
-        if (head != 0)          // if there is a head already
-            head->prev = 0;     // set the head's prev to null
+        if (head != 0)
+            head->prev = 0;
     }
-    else {                      // middle or end position
+    else {
         prevNode->next = currNode->next;
         if (currNode->next != 0)
             currNode->next->prev = prevNode;
@@ -142,7 +169,14 @@ int Queue::remove(int pirateId) {
 
 }
 
-// Returns the space of a Pirate with the given ID
+/*   Function:  getPirateSpace                         			*/
+/*         in:  ID of a pirate                                  */
+/*        out:  The space of a pirate with matching ID          */
+/*    Purpose:  Returns the space of a pirate (this is used     */
+/*              when removing a pirate, in order to increase    */
+/*              the space that is left in a cell after a pirate */
+/*              is removed from it                              */
+
 int Queue::getPirateSpace(int pirateId) {
     Node *currNode;
     
@@ -157,6 +191,13 @@ int Queue::getPirateSpace(int pirateId) {
     return 0;
 }
 
+/*   Function:  contains                             			*/
+/*         in:  ID of a pirate                                  */
+/*        out:  A boolean indicating whether or not a pirate    */
+/*              with a matching ID is in the Queue              */
+/*    Purpose:  Indicates whether or not a pirate with a        */
+/*              certain ID is in the Queue                      */
+
 bool Queue::contains(int pirateId) {
     Node *currNode;
     
@@ -168,11 +209,16 @@ bool Queue::contains(int pirateId) {
         currNode = currNode->next;
     }
     
-    return false;   // we broke out of the while loop because currNode == 0, so it's not there
+    return false;
 }
 
-// Deletes the data contained in every Node - can't be put in the destructor
-// because the tempQueue in printBrig calls the destructor
+/*   Function:  deleteData                             			*/
+/*    Purpose:  Deletes the data contained in every Node in     */
+/*              the Queue. This cannot be in the Queue's        */
+/*              destructor because the temporary queue in       */
+/*              the printBrig function calls the destructor     */
+/*              and that queue should not be deleting the data  */
+
 void Queue::deleteData() {
     Node *currNode, *nextNode;
 
@@ -184,4 +230,3 @@ void Queue::deleteData() {
         currNode = nextNode;
     }
 }
-

@@ -2,6 +2,10 @@
 
 Brig::Brig() { }
 
+/*   Function:  addPirate	                         		    */
+/*         in:  Location of pirate to be added to the brig		*/
+/*    Purpose:  Adds a single pirate to the brig in a cell		*/
+/*				that has enough space for it					*/
 
 int Brig::addPirate(Pirate* pirate)
 {
@@ -31,6 +35,11 @@ int Brig::addPirate(Pirate* pirate)
     return C_OK;
 }
 
+/*   Function:  addPirate	                         		    */
+/*         in:  ID of pirate to be removed from the brig		*/
+/*    Purpose:  Removes a pirate with a matching ID from the    */
+/*              brig                                            */
+
 int Brig::removePirate(int pirateId) {
     Cell* currCell;
     for (int i=0; i<cells.getSize(); ++i) {
@@ -46,6 +55,9 @@ int Brig::removePirate(int pirateId) {
 }
 
 CArray& Brig::getCells() { return cells; }
+
+/*   Function:  cleanup	                         		        */
+/*    Purpose:  Calls deleteData() on each queue in the brig    */
 
 void Brig::cleanup() {
 	for (int i=0; i<cells.getSize(); ++i) {

@@ -16,6 +16,13 @@ BrigManager::~BrigManager()
     delete brig;
 }
 
+/*   Function:  launch                               			*/
+/*    Purpose:  Control object of the program.              	*/
+/*				Loops through the main menu and pirate 			*/
+/*				management menu by calling Display functions,	*/
+/*				and calls the add/remove Pirate and printBrig	*/
+/*				functions when the user asks for it.			*/
+
 void BrigManager::launch()
 {
     int    choice1 = -1;
@@ -54,6 +61,10 @@ void BrigManager::launch()
             view->pause();
     }
 }
+
+/*   Function:  addPirates		                         		*/
+/*    Purpose:  Adds a user-decided number of pirates to		*/
+/*				the brig										*/
 
 void BrigManager::addPirates(int numPirates)
 {
