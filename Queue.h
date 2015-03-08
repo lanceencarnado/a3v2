@@ -23,6 +23,7 @@ class Queue
         int tempPop();
         Pirate* front();
         bool empty();
+        int getPirateSize(int);
         bool contains(int);
         int remove(int);
 		void deleteData();

@@ -142,6 +142,18 @@ int Queue::remove(int pirateId) {
 
 }
 
+// Returns the size of a Pirate with the given ID
+int Queue::getPirateSize(int pirateId) {
+    Node *currNode;
+    
+    currNode = head;
+    
+    while (currNode != 0) {
+        if (currNode->data->getId() == pirateId)
+            return currNode->data->getSpace();
+        currNode = currNode->next;
+    }
+}
 
 bool Queue::contains(int pirateId) {
     Node *currNode;
