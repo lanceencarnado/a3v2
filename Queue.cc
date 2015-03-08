@@ -153,6 +153,8 @@ int Queue::getPirateSpace(int pirateId) {
             return currNode->data->getSpace();
         currNode = currNode->next;
     }
+    
+    return 0;
 }
 
 bool Queue::contains(int pirateId) {
