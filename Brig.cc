@@ -2,6 +2,13 @@
 
 Brig::Brig() { }
 
+Brig::~Brig() {
+    // Deletes the data contained in each queue in each cell
+	for (int i=0; i<cells.getSize(); ++i) {
+		cells.get(i)->getPirates().deleteData();
+	}
+}
+
 /*   Function:  addPirate	                         		    */
 /*         in:  Location of pirate to be added to the brig		*/
 /*    Purpose:  Adds a single pirate to the brig in a cell		*/
@@ -55,13 +62,4 @@ int Brig::removePirate(int pirateId) {
 }
 
 CArray& Brig::getCells() { return cells; }
-
-/*   Function:  cleanup	                         		        */
-/*    Purpose:  Calls deleteData() on each queue in the brig    */
-
-void Brig::cleanup() {
-	for (int i=0; i<cells.getSize(); ++i) {
-		cells.get(i)->getPirates().deleteData();
-	}
-}
 

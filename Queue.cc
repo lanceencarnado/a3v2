@@ -197,6 +197,7 @@ int Queue::getPirateSpace(int pirateId) {
 /*              with a matching ID is in the Queue              */
 /*    Purpose:  Indicates whether or not a pirate with a        */
 /*              certain ID is in the Queue                      */
+/*       NOTE:  This is our equivalent to a "find" function     */
 
 bool Queue::contains(int pirateId) {
     Node *currNode;

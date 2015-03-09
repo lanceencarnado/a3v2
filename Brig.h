@@ -14,10 +14,10 @@ class Brig
 {
     public:
         Brig();
+        ~Brig();
         int addPirate(Pirate*);
         int removePirate(int);
         CArray& getCells();
-		void cleanup();
     private:
         CArray cells;
 };
