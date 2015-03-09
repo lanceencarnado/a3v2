@@ -12,7 +12,6 @@ BrigManager::BrigManager()
 BrigManager::~BrigManager()
 {
     delete view;
-	brig->cleanup();
     delete brig;
 }
 
