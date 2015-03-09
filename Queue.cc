@@ -1,12 +1,3 @@
-//
-//  Queue.cc
-//  
-//
-//  Created by Angus Leung on 2015-03-07.
-//
-//
-
-
 #include "Queue.h"
 
 
@@ -92,24 +83,6 @@ int Queue::pop() {
         return C_NOK;
 }
 
-/*   Function:  tempPop                         			    */
-/*        out:  Int indicating success or failure               */
-/*    Purpose:  A pop function that does not delete the         */
-/*              removed node's data (this is required for the   */
-/*              temporary Queue that is made in the printBrig   */
-/*              function)                                       */
-
-int Queue::tempPop() {
-	if (head == 0)
-		return C_NOK;
-	Node* newHead = head->next;
-	delete head;
-	head = newHead;
-	if (head != 0)
-		head->prev = 0;
-	return C_OK;
-}
-
 /*   Function:  front                         			        */
 /*        out:  Pointer to the Pirate at the front of the Queue */
 /*    Purpose:  Returns a pointer to the pirate at the front of */
@@ -134,6 +107,8 @@ bool Queue::empty() {
 /*         in:  ID of the pirate to be removed                  */
 /*    Purpose:  Removes a pirate with the given ID from the     */
 /*              Queue                                           */
+/*              (the actual data is deleted in the removePirate */
+/*              function)                                       */
 
 int Queue::remove(int pirateId) {
     Node *currNode, *prevNode;
@@ -162,7 +137,6 @@ int Queue::remove(int pirateId) {
             currNode->next->prev = prevNode;
     }
 
-    delete currNode->data;
     delete currNode;
     
     return C_OK;
@@ -191,26 +165,26 @@ int Queue::getPirateSpace(int pirateId) {
     return 0;
 }
 
-/*   Function:  contains                             			*/
+/*   Function:  find                                 			*/
 /*         in:  ID of a pirate                                  */
-/*        out:  A boolean indicating whether or not a pirate    */
-/*              with a matching ID is in the Queue              */
-/*    Purpose:  Indicates whether or not a pirate with a        */
-/*              certain ID is in the Queue                      */
-/*       NOTE:  This is our equivalent to a "find" function     */
+/*        out:  A pointer to the pirate with a matching ID      */
+/*    Purpose:  Returns a pointer to the pirate that is being   */
+/*              searched for                                    */
+/*              (for deallocation purposes in the               */
+/*              removePirate() function in the Brig)            */
 
-bool Queue::contains(int pirateId) {
+Pirate* Queue::find(int pirateId) {
     Node *currNode;
     
     currNode = head;
     
     while (currNode != 0) {
         if (currNode->data->getId() == pirateId)
-            return true;
+            return currNode->data;
         currNode = currNode->next;
     }
     
-    return false;
+    return 0;
 }
 
 /*   Function:  deleteData                             			*/

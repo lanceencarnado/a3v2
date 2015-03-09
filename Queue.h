@@ -20,11 +20,10 @@ class Queue
         ~Queue();
         int push(Pirate*);
         int pop();
-        int tempPop();
         Pirate* front();
         bool empty();
         int getPirateSpace(int);
-        bool contains(int);
+        Pirate* find(int);
         int remove(int);
 		void deleteData();
     private:

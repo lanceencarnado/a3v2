@@ -49,12 +49,15 @@ int Brig::addPirate(Pirate* pirate)
 
 int Brig::removePirate(int pirateId) {
     Cell* currCell;
+    Pirate* foundPirate;
     for (int i=0; i<cells.getSize(); ++i) {
         currCell = cells.get(i);
         // goes through each Queue and asks if it contains the Pirate to be removed
-        if (currCell->getPirates().contains(pirateId)) {
+        foundPirate = currCell->getPirates().find(pirateId);
+        if (foundPirate != 0) {
             currCell->increaseSpace(currCell->getPirates().getPirateSpace(pirateId));
             currCell->getPirates().remove(pirateId);  // remove it from the Queue
+            delete foundPirate;                       // deallocate the data
             return C_OK;
         } 
     }
